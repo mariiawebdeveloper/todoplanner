@@ -40,6 +40,9 @@ app.get("/", (req, res) => {
     res.json({ message: "Test." });
 });
 
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
