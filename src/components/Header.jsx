@@ -6,6 +6,7 @@ function Header() {
         <div>
             <div><Link to={'/main'}  className={'links'}>Main</Link></div>
             <div><Link to={'/login'} className={'links'}>User</Link></div>
+            <div><Link to={'/todo'} className={'links'}>ToDo</Link></div>
 
 
         </div>

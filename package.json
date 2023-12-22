@@ -13,10 +13,13 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "react": "^18.2.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-router": "^6.21.0",
     "react-router-dom": "^6.21.0",
     "react-scripts": "5.0.1",
+    "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
