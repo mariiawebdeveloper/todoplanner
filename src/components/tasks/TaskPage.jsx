@@ -9,24 +9,28 @@ function TaskPage() {
             order: 1,
             title: 'second todo',
             status: 'to do',
+            deadline: '2023-12-31',
         },
         {
             id: 1,
             order: 0,
             title: 'first todo',
             status: 'to do',
+            deadline: '2023-12-31',
         },
         {
             id: 3,
             order: 2,
             title: 'third todo',
             status: 'in process',
+            deadline: '2023-12-31',
         },
         {
             id: 4,
             order: 1,
             title: 'four todo',
             status: 'done',
+            deadline: '2023-12-31',
         },
     ]);
 

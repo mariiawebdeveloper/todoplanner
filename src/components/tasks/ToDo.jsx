@@ -108,7 +108,7 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
                     onDragLeave={(e) => dragEndHandler(e)}
                     onDragEnd={(e) => dragEndHandler(e)}
                     onDragOver={(e) => dragOverHandler(e)}
-                    onDrop={(e) => dropHandler(e, 'to do')} // Замени 'to do' на соответствующий статус
+                    onDrop={(e) => dropHandler(e, 'to do')}
                     className={item.status === true ? 'item-active' : 'item-closed'}
                 >
                     <div className='item-location'>
@@ -119,8 +119,8 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
                         ) : (
                             <div>{item.title} </div>
                         )}
-                        {/* Используй динамический текст в зависимости от статуса */}
                         <div>{`Task is ${item.status === 'to do' ? 'todo' : item.status}`}</div>
+                        <div>{`Deadline: ${item.deadline}`}</div>
                     </div>
                     {edit === item.id ? (
                         <div>

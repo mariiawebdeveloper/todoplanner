@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid'; // Import uuid using v4 alias
+import { v4 as uuidv4 } from 'uuid';
 
 function AddToDoList({ todo, setTodo }) {
     const [value, setValue] = useState('');
+    const [deadline, setDeadline] = useState('');
 
     function saveTodo() {
         setTodo((prevTodo) => [
@@ -12,10 +13,12 @@ function AddToDoList({ todo, setTodo }) {
                 order: prevTodo.length,
                 title: value,
                 status: 'to do',
+                deadline: deadline,
 
             }
         ]);
         setValue('');
+        setDeadline('');
     }
 
     return (
@@ -23,7 +26,7 @@ function AddToDoList({ todo, setTodo }) {
             <input
                 placeholder="Create new task"
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => setDeadline(e.target.value)}
             />
             <button onClick={saveTodo}>SAVE</button>
         </div>
