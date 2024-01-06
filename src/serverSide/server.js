@@ -2,11 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 const db = require("./models");
+const {signup} = require("./controllers/auth.controller");
 
 const app = express();
 
 let corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
@@ -38,6 +39,9 @@ db.mongoose
 
 app.get("/", (req, res) => {
     res.json({ message: "Test." });
+});
+app.post("/api/auth/signup", (req, res) => {
+   signup(req, res);
 });
 
 require('./routes/auth.routes')(app);

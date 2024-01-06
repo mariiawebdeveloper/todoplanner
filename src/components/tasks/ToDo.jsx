@@ -5,6 +5,8 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
     const [edit, setEdit] = useState(null);
     const [value, setValue] = useState('');
 
+
+
     function dragStartHandler(e, item) {
         setCurrentCard(item);
     }
@@ -97,6 +99,8 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
         setTodo(newTodo);
         setEdit(null);
     }
+
+
 
     return (
         <div>

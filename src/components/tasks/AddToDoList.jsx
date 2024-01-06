@@ -10,8 +10,9 @@ function AddToDoList({ todo, setTodo, status }) {
             {
                 id: uuidv4(),
                 title: value,
-                status: status, // Используй переданный статус
+                status: status,
                 order: prevTodo.length,
+                date: new Date().toLocaleString(),
             },
         ]);
         setValue('');
