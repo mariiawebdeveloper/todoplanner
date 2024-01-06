@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 const db = require("./models");
-const {signup} = require("./controllers/auth.controller");
+const {signup, signin} = require("./controllers/auth.controller");
 
 const app = express();
 
@@ -42,6 +42,9 @@ app.get("/", (req, res) => {
 });
 app.post("/api/auth/signup", (req, res) => {
    signup(req, res);
+});
+app.post("/api/auth/signin", (req, res) => {
+   signin(req, res);
 });
 
 require('./routes/auth.routes')(app);
