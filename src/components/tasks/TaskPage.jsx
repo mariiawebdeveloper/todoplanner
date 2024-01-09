@@ -1,82 +1,104 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddToDoList from "./AddToDoList";
 import ToDo from "./ToDo";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import './tod.css';
 
 function TaskPage() {
-    const [todo, setTodo] = useState([
-        {
-            id: 2,
-            order: 1,
-            title: 'second todo',
-            status: 'to do',
-            deadline: '2023-12-31',
-        },
-        {
-            id: 1,
-            order: 0,
-            title: 'first todo',
-            status: 'to do',
-            deadline: '2023-12-31',
-        },
-        {
-            id: 3,
-            order: 2,
-            title: 'third todo',
-            status: 'in process',
-            deadline: '2023-12-31',
-        },
-        {
-            id: 4,
-            order: 1,
-            title: 'four todo',
-            status: 'done',
-            deadline: '2023-12-31',
-        },
-    ]);
-
+    const [cookies, setCookie] = useCookies(['username']);
+    const [todo, setTodo] = useState([]);
     const [currentCard, setCurrentCard] = useState(null);
 
-    const toDoTasks = todo.filter((task) => task.status === 'to do');
-    const inProcessTasks = todo.filter((task) => task.status === 'in process');
-    const doneTasks = todo.filter((task) => task.status === 'done');
+    useEffect(() => {
+        fetchTodos();
+    }, [cookies.username]);
 
-    console.log("To Do Tasks:", toDoTasks);
-    console.log("ToDo Props:", todo);
+    const toDoTasks = Array.isArray(todo) ? todo.filter((task) => task.status === 'to do') : [];
+    const inProcessTasks = Array.isArray(todo) ? todo.filter((task) => task.status === 'in progress') : [];
+    const doneTasks = Array.isArray(todo) ? todo.filter((task) => task.status === 'done') : [];
+
+     function fetchTodos() {
+
+        const postData = {
+            username: cookies.username,
+
+        };
+
+        axios.get(`http://localhost:8080/todos?username=${cookies.username}`)
+            .then(response => {
+                console.log('data', response.data);
+                setTodo(response.data)
+
+
+            })
+            .catch(error => {
+                console.error('error', error);
+            });
+    }
 
     function dropHandler(e, targetStatus) {
+
         e.preventDefault();
         if (currentCard) {
-            const updatedTodo = todo.map((item) => {
-                if (item.id === currentCard.id) {
-                    return { ...item, status: targetStatus };
-                }
-                return item;
-            });
+            dragEndHandler(e, targetStatus)
+            const updatedTodo = Array.isArray(todo)
+                ? todo.map((item) => (item.id === currentCard.id ? { ...item, status: targetStatus } : item))
+                : [];
             setTodo(updatedTodo);
+        }
+        console.log('HHHHHUUUUUUIIIII', todo)
+
+    }
+
+    function dragEndHandler(e, status) {
+        try {
+            console.log(todo)
+            axios.put(`http://localhost:8080/todos/${currentCard.trueId}`, { status: status });
+            setTodo((prevTodo) => {
+                return prevTodo.map((card) => {
+                    console.log(card, currentCard, 'PIZDA')
+                    if (card=== undefined){
+                        return card;
+                    }
+                    if (card.id === currentCard.id) {
+                        return { ...card, status: status };
+                    }
+                    return card;
+                });
+            });
+        } catch (error) {
+            console.error('Error update status:', error);
         }
     }
 
     return (
         <div className={'todo-cont'}>
-            <AddToDoList todo={toDoTasks} setTodo={setTodo} status="to do" />
-            <div className='main-location' onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'to do')}>
-                <div> To do list</div>
-                <div className='item'>
-                    <ToDo todo={toDoTasks} setTodo={setTodo} currentCard={currentCard} setCurrentCard={setCurrentCard} />
-                </div>
-            </div>
-            <div className='main-location' onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'in process')}>
-                <div> Process list</div>
-                <div className='item'>
-                    <ToDo todo={inProcessTasks} setTodo={setTodo} currentCard={currentCard} setCurrentCard={setCurrentCard} />
-                </div>
-            </div>
-            <div className='main-location' onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'done')}>
-                <div> Done list</div>
-                <div className='item'>
-                    <ToDo todo={doneTasks} setTodo={setTodo} currentCard={currentCard} setCurrentCard={setCurrentCard} />
-                </div>
-            </div>
+            {cookies.username ? (
+                <>
+                    <AddToDoList setTodo={setTodo} />
+                    <div className='main-location' onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'to do')}>
+                        <div> To do list</div>
+                        <div className='item'>
+                            <ToDo todo={toDoTasks} setTodo={setTodo} currentCard={currentCard} setCurrentCard={setCurrentCard} />
+                        </div>
+                    </div>
+                    <div className='main-location' onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'in progress')}>
+                        <div>Progress list</div>
+                        <div className='item'>
+                            <ToDo todo={inProcessTasks} setTodo={setTodo} currentCard={currentCard} setCurrentCard={setCurrentCard} />
+                        </div>
+                    </div>
+                    <div className='main-location' onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'done')}>
+                        <div> Done list</div>
+                        <div className='item'>
+                            <ToDo todo={doneTasks} setTodo={setTodo} currentCard={currentCard} setCurrentCard={setCurrentCard} />
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <div>You are not logged in</div>
+            )}
         </div>
     );
 }

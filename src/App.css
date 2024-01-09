@@ -5,13 +5,13 @@
      height: 100vh;
      margin: 0;
      background-color: #1D1C1D;
-     color: #e0e0e0;
+
    }
 
 .App {
   display: flex;
   flex-grow: 1;
-  height: calc(100vh - 40px); /* Занимает 100% высоты экрана */
+  height: calc(100vh - 40px);
 }
 
 .SideMenu {

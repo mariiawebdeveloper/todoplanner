@@ -1,17 +1,40 @@
 import React, {useState} from 'react';
 import './tod.css';
+import axios from "axios";
 
 function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
     const [edit, setEdit] = useState(null);
     const [value, setValue] = useState('');
 
+    async function deleteTodo(id) {
+        try {
+            await axios.delete(`http://localhost:8080/todos/${id}`);
+            setTodo((prevTodo) => prevTodo.filter((item) => item.trueId !== id));
 
+        } catch (error) {
+            console.error('Error deleting todo:', error);
+        }
+    }
 
     function dragStartHandler(e, item) {
         setCurrentCard(item);
     }
 
-    function dragEndHandler(e) {}
+    function dragEndHandler(e) {
+        try {
+            axios.put(`http://localhost:8080/todos/${currentCard.trueId}`, { status: 'in progress' });
+            setTodo((prevTodo) => {
+                return prevTodo.map((card) => {
+                    if (card.id === currentCard.id) {
+                        return { ...card, status: 'in progress' };
+                    }
+                    return card;
+                });
+            });
+        } catch (error) {
+            console.error('Error updating todo status:', error);
+        }
+    }
 
     function dragOverHandler(e) {
         e.preventDefault();
@@ -23,11 +46,7 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
             return prevTodo.map((card) => {
                 if (card.id === currentCard.id) {
                     return {...card, status: targetStatus};
-                } else if (card.id === currentCard.id) {
-                    let item;
-                    return {...card, order: item.order};
                 }
-                return card;
             });
         });
     }
@@ -40,10 +59,6 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
         }
     };
 
-    function deleteTodo(id) {
-        let newTodo = [...todo].filter((item) => item.id !== id);
-        setTodo(newTodo);
-    }
 
     function statusTodo(id) {
         const transitionTime = 2000;
@@ -56,14 +71,13 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
 
         const intervalId = setInterval(() => {
             setTodo((prevTodo) => {
-                const updatedTodo = prevTodo.map((item) => {
+                return prevTodo.map((item) => {
                     if (item.id === id) {
                         const newOrder = initialOrder + (currentStep / steps);
-                        return { ...item, order: newOrder };
+                        return {...item, order: newOrder};
                     }
                     return item;
                 });
-                return updatedTodo;
             });
 
             currentStep++;
@@ -72,13 +86,12 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
                 clearInterval(intervalId);
 
                 setTodo((prevTodo) => {
-                    const updatedTodo = prevTodo.map((item) => {
+                    return prevTodo.map((item) => {
                         if (item.id === id) {
-                            return { ...item, status: 'done', order: initialOrder + 1 };
+                            return {...item, status: 'done', order: initialOrder + 1};
                         }
                         return item;
                     });
-                    return updatedTodo;
                 });
             }
         }, interval);
@@ -113,7 +126,6 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
                     onDragEnd={(e) => dragEndHandler(e)}
                     onDragOver={(e) => dragOverHandler(e)}
                     onDrop={(e) => dropHandler(e, 'to do')}
-                    className={item.status === true ? 'item-active' : 'item-closed'}
                 >
                     <div className='item-location'>
                         {edit === item.id ? (
@@ -132,8 +144,7 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
                         </div>
                     ) : (
                         <div className='button-location'>
-                            <button onClick={() => deleteTodo(item.id)}>DELETE</button>
-                            <button onClick={() => statusTodo(item.id)}>Change status</button>
+                            <button onClick={() => deleteTodo(item.trueId)}>DELETE</button>
                             <button onClick={() => editTodo(item.id, item.title)}>EDIT</button>
                         </div>
                     )}

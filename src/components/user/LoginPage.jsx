@@ -1,23 +1,16 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import {useCookies} from 'react-cookie';
 
-class LoginPage extends Component {
-    state = {
-        username: '',
-        password: '',
 
-    };
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-    };
+const LoginPage = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const [cookies, setCookie] = useCookies(['username']);
 
-    handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const {  username, password,  } = this.state;
-
 
         try {
             const response = await fetch('http://localhost:8080/api/auth/signin', {
@@ -30,38 +23,38 @@ class LoginPage extends Component {
                     password,
                 }),
             });
-            if (response.ok){
-                console.log('myaw')
+
+            if (response.ok) {
+                setCookie("username", username )
+                navigate('/todo');
             }
 
-            console.log(response)
-
+            console.log(response);
         } catch (error) {
             console.error('Error:', error);
         }
     };
-    render() {
-        return (
-            <div>
-                <h2>Login</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Email:
-                        <input type="text" name="username"  value={this.state.username} onChange={this.handleChange}  />
-                    </label>
-                    <br />
-                    <label>
-                        Password:
-                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-                    </label>
-                    <br />
-                    <button type="submit">Login</button>
-                </form>
+
+    return (
+        <div>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Email:
+                    <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                </label>
                 <br />
-                <Link to="/register">Create an account</Link>
-            </div>
-        );
-    }
-}
+                <label>
+                    Password:
+                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </label>
+                <br />
+                <button type="submit">Login</button>
+            </form>
+            <br />
+            <Link to="/register">Create an account</Link>
+        </div>
+    );
+};
 
 export default LoginPage;
