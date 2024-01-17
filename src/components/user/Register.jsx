@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './user.css';
 
 class Register extends Component {
     state = {
@@ -16,7 +17,6 @@ class Register extends Component {
     };
 
     handleSubmit = async (e) => {
-        console.log('myaw')
         e.preventDefault();
 
         const { username, email, password, confirmPassword } = this.state;
@@ -38,7 +38,7 @@ class Register extends Component {
                 }),
             });
 
-            console.log(response)
+            console.log(response);
 
             // const data = await response.json();
 
@@ -51,36 +51,67 @@ class Register extends Component {
 
     render() {
         return (
-            <div>
-                <Link to="/login">Back to Login</Link>
-                <h2>Register</h2>
+            <div className="container">
+                <div className="back-link">
+                    <div className="arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" >
+                            <path d="M5 12h14M12 5l-7 7 7 7"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <Link to="/login" className="link">
+                            Back to Login
+                        </Link>
+                    </div>
+                </div>
+                <div><img src='/ava.svg' alt="Фото" /></div>
+                <div><h2 className="form-label">Registration</h2></div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Username:
-                        <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                        <span className="form-label">Username:</span>
+                        <input
+                            type="text"
+                            name="username"
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                            className="form-input"
+                        />
                     </label>
                     <br />
                     <label>
-                        Email:
-                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <span className="form-label">Email:</span>
+                        <input
+                            type="text"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                            className="form-input"
+                        />
                     </label>
                     <br />
                     <label>
-                        Password:
-                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <span className="form-label">Password:</span>
+                        <input
+                            type="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            className="form-input"
+                        />
                     </label>
                     <br />
                     <label>
-                        Confirm Password:
+                        <span className="form-label">Confirm Password:</span>
                         <input
                             type="password"
                             name="confirmPassword"
                             value={this.state.confirmPassword}
                             onChange={this.handleChange}
+                            className="form-input"
                         />
                     </label>
                     <br />
-                    <button type="submit">Register</button>
+                    <button type="submit" className="form-button">Register</button>
                 </form>
             </div>
         );

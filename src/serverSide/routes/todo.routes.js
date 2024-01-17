@@ -16,4 +16,5 @@ module.exports = function(app) {
     app.delete('/todos/:trueId', controller.deleteTodo);
 
     app.put('/todos/:trueId', controller.editTodo);
+    app.patch('/todos', controller.editTodo)
 };

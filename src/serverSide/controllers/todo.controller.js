@@ -59,10 +59,11 @@ exports.deleteTodo = async (req, res) => {
 
 
 exports.editTodo = async (req, res) => {
-    const trueId = req.params.trueId;
-    const { title, status, order, deadline } = req.body;
+    const { trueId, title, status, order, deadline, username } = req.body;
 
     try {
+        console.log(trueId,'true Id')
+        console.log(req.body,'BoDy')
         const updatedTodo = await Todo.findOneAndUpdate(
             {trueId: trueId},
             {
@@ -70,9 +71,8 @@ exports.editTodo = async (req, res) => {
                 status,
                 order,
                 deadline,
-                username: req.body.username
-            },
-            { new: true }
+                username
+            }
         );
 
         res.status(200).json(updatedTodo);

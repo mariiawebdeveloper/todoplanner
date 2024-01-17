@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {useCookies} from 'react-cookie';
+import './user.css';
+
 
 
 const LoginPage = () => {
@@ -36,23 +38,24 @@ const LoginPage = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
+        <div className="container">
+            <img src='/ava.svg' alt="Фото" />
+            <h2 className="form-label">Login</h2>
             <form onSubmit={handleSubmit}>
-                <label>
+                <label className="form-label">
                     Email:
-                    <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input className="form-input" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </label>
                 <br />
-                <label>
+                <label className="form-label">
                     Password:
-                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input className="form-input" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
                 <br />
-                <button type="submit">Login</button>
+                <button className="form-button" type="submit">Login</button>
             </form>
             <br />
-            <Link to="/register">Create an account</Link>
+            <Link className="link" to="/register">Create an account</Link>
         </div>
     );
 };

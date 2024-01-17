@@ -1,0 +1,150 @@
+.todo-cont {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.main-location {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    position: relative;
+}
+
+.item {
+    margin-top: 10px;
+}
+
+.item-location {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+.item-location:hover {
+    background-color: #f0f0f0;
+}
+
+.button-location {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.button-location button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button-location button:hover {
+    background-color: #ddd;
+}
+
+.todo-loc {
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-loc-dots {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-dropdown {
+    position: absolute;
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    padding: 20px;
+}
+
+.button-dropdown button {
+    margin: 5px;
+    background-color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.button-dropdown button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Добавьте следующие стили для подложки */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* полупрозрачный черный цвет */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Добавьте следующие стили для контента модального окна */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1001;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #888;
+}
+
+/* Добавьте стили для формы внутри модального окна */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Добавьте стили для инпутов и кнопок внутри формы */
+.modal-content input {
+    margin: 10px 0;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.modal-content button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal-content button:hover {
+    background-color: #45a049;
+}

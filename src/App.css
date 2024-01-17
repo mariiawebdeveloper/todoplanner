@@ -1,45 +1,127 @@
 
-   body {
-     display: flex;
-     flex-direction: column;
-     height: 100vh;
-     margin: 0;
-     background-color: #1D1C1D;
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: #1D1C1D;
 
-   }
+}
 
 .App {
-  display: flex;
-  flex-grow: 1;
-  height: calc(100vh - 40px);
+    display: flex;
+    flex-grow: 1;
+    height: calc(100vh - 40px);
 }
 
 .SideMenu {
-  width: 200px;
-  background-color: #1D1C1D;
+    width: 200px;
+    background-color: #1D1C1D;
 }
 
 .MainContent {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  background-color: white;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #DDDDDD;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px;
 }
 
-.Header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  margin: 20px;
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 50px;
+    background: #E9E9E9;
+    border-radius: 10px;
+    margin: 20px;
 }
 
 .Content {
-  flex-grow: 1;
-  padding: 20px;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.links {
+    color: black;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.dropdown-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%; /* Отображать под фото */
+    left: 0;
+    background-color: #333; /* Цвет фона выпадающего окна */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
+    padding: 10px;
+    z-index: 1; /* Помещаем выпадающее окно поверх других элементов */
+    border-radius: 4px; /* Скругление углов */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.dropdown-content a:hover {
+    color: #45a049; /* Цвет текста при наведении */
+}
+
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #1D1C1D;
+    color: white;
+
+}
+
+.logo-container img {
+    width: 100px;
+    height: auto;
+}
+
+.links {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.avatar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.avatar-links div {
+    margin-top: 10px;
+}
+
+.avatar-links img {
+    width: 35px;
+    height: 40px;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.avatar-links img:hover {
+    transform: scale(1.1);
 }
