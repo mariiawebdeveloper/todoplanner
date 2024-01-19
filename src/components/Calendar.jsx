@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
 
-function myApp() {
+function MyApp() {
     const [todo, setTodo] = useState(null);
     const [cookies] = useCookies(['username']);
 
@@ -30,7 +30,7 @@ function myApp() {
 
     function getDate() {
         if (todo === null) {
-            // Если todo равно null, вернем пустой массив
+            // Если todo равно null, вернем пустой массивnpn
             return [];
         }
         return todo.map(e => new Date(e.deadline));
@@ -64,4 +64,4 @@ function myApp() {
     );
 }
 
-export default myApp;
+export default MyApp;
