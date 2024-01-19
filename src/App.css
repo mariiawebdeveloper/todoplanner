@@ -125,3 +125,78 @@ body {
 .avatar-links img:hover {
     transform: scale(1.1);
 }
+
+
+
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature {
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 300px;
+}
+
+.feature img {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 20px;
+}
+
+.cta-section {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.cta-section h2 {
+    font-size: 2em;
+    color: #333;
+}
+
+.cta-section p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #45a049;
+}

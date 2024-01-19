@@ -9,12 +9,12 @@ function Menu() {
             </div>
 
             <div>
-                <Link to={'/au'} className={'links'}>Main</Link>
+                <Link to={'/'} className={'links'}>Main</Link>
             </div>
 
             <div className="avatar-links">
                 <div>
-                    <Link to={'/profile'}>
+                    <Link to={'/'}>
                         <img src={'/Home.svg'} width={35} height={40} alt="User Avatar" />
                     </Link>
                 </div>

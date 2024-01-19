@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import CalendarPopup from './Calendar'; // Предположим, что у вас есть компонент с календарем
 
 function Header() {
     const [isDropdownVisible, setDropdownVisible] = useState(false);
+    const [isCalendarOpen, setCalendarOpen] = useState(false);
 
     const handleDropdownToggle = () => {
         setDropdownVisible(!isDropdownVisible);
     };
 
+    const handleCalendarToggle = () => {
+        setCalendarOpen(!isCalendarOpen);
+    };
+
     return (
         <div className="header">
-            <div><Link to={'/main'} className={'links'}>Plannuyou</Link></div>
+            <div><Link to={'/'} className={'links'}>Plannuyou</Link></div>
             <div><Link to={'/todo'} className={'links'}>Board</Link></div>
-            <div><Link to={'/todo'} className={'links'}>Calendar</Link></div>
+            <div onClick={handleCalendarToggle} className={'links'}>Calendar</div>
             <div className="dropdown-container">
                 <img src={'/ava.svg'} width={50} onClick={handleDropdownToggle} />
                 {isDropdownVisible && (
@@ -25,10 +31,9 @@ function Header() {
                 <div>User</div>
             </div>
 
+            {isCalendarOpen && <CalendarPopup onClose={handleCalendarToggle} />}
         </div>
     );
 }
 
 export default Header;
-
-

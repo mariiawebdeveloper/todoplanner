@@ -4,6 +4,7 @@ import ToDo from './ToDo';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import './todo.css';
+import Calendar from "../Calendar";
 
 function TaskPage() {
     const [cookies] = useCookies(['username']);
@@ -81,6 +82,7 @@ function TaskPage() {
         <div className="todo-cont">
             {cookies.username ? (
                 <>
+
                     <div onClick={handleModalOpen}>+</div>
                     {isModalOpen && <AddToDoModal setTodo={setTodo} onClose={handleModalClose} />}
                     <div className="main-location" onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'to do')}>
