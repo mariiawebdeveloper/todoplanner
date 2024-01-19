@@ -50,7 +50,9 @@ function TaskPage() {
 
     function dragEndHandler(e, status) {
         try {
+            console.log('hui', status)
             axios.put(`http://localhost:8080/todos/${currentCard.trueId}`, { status: status });
+
             setTodo((prevTodo) => {
                 return prevTodo.map((card) => {
                     if (card === undefined) {

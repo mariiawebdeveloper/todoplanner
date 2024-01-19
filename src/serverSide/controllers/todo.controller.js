@@ -59,7 +59,8 @@ exports.deleteTodo = async (req, res) => {
 
 
 exports.editTodo = async (req, res) => {
-    const { trueId, title, status, order, deadline, username } = req.body;
+    const {trueId} = req.params;
+    const { title, status, order, deadline, username } = req.body;
 
     try {
         console.log(trueId,'true Id')
