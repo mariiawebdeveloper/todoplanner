@@ -21,9 +21,6 @@ class Register extends Component {
 
         const { username, email, password, confirmPassword } = this.state;
 
-        // Проверки на валидность данных, например, сравнение паролей
-
-        // Отправка данных на сервер
         try {
             const response = await fetch('http://localhost:8080/api/auth/signup', {
                 method: 'POST',
@@ -40,10 +37,7 @@ class Register extends Component {
 
             console.log(response);
 
-            // const data = await response.json();
 
-            // Обработка ответа от сервера, например, вывод сообщения об успешной регистрации или ошибке
-            // console.log(data.message);
         } catch (error) {
             console.error('Error:', error);
         }

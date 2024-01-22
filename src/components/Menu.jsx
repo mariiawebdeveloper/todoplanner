@@ -7,11 +7,6 @@ function Menu() {
             <div className="logo-container">
                 <img src={'/лого.svg'} alt="Logo" />
             </div>
-
-            <div>
-                <Link to={'/'} className={'links'}>Main</Link>
-            </div>
-
             <div className="avatar-links">
                 <div>
                     <Link to={'/'}>

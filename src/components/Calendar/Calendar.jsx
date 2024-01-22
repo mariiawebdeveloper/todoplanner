@@ -8,6 +8,7 @@ import { useCookies } from 'react-cookie';
 function MyApp() {
     const [todo, setTodo] = useState(null);
     const [cookies] = useCookies(['username']);
+    const [selectedDate, setSelectedDate] = useState(null);
 
     useEffect(() => {
         fetchTodos();
@@ -30,7 +31,6 @@ function MyApp() {
 
     function getDate() {
         if (todo === null) {
-            // Если todo равно null, вернем пустой массивnpn
             return [];
         }
         return todo.map(e => new Date(e.deadline));

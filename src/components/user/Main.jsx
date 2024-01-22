@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 
 class Main extends Component {
     render() {
@@ -28,7 +29,9 @@ class Main extends Component {
                 <section className="cta-section">
                     <h2>Start Organizing Your Life Today</h2>
                     <p>Join Plannuyou and take control of your tasks, deadlines, and productivity.</p>
-                    <button className={'button'}>Get Started</button>
+                    <Link to="/register">
+                        <button className={'button'}>Get Started</button>
+                    </Link>
                 </section>
             </div>
         );

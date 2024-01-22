@@ -9,7 +9,6 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const [cookies, setCookie] = useCookies(['username']);
 
-    // Если кука существует, пользователь уже залогинен
     if (cookies.username) {
         return (
             <div className="container">
