@@ -6,6 +6,8 @@ import LoginPage from "./components/user/LoginPage";
 import Main from "./components/user/Main";
 import Register from "./components/user/Register";
 import TaskPage from "./components/tasks/TaskPage";
+import LogOut from "./components/user/LogOut";
+import UserPage from "./components/user/UserPage";
 
 function App() {
     return (
@@ -23,8 +25,10 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Main />} />
                         <Route path="/login" element={<LoginPage />} />
+                        <Route path="/logout" element={<LogOut />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/todo" element={<TaskPage />} />
+                        <Route path="/user" element={<UserPage />} />
 
                     </Routes>
                 </div>

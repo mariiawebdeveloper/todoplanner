@@ -1,0 +1,80 @@
+/* Ваши стили для .calendar-container оставляем без изменений */
+
+.calendar-container {
+    position: absolute !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+}
+
+.react-calendar {
+    width: 700px; /* Изменяем ширину на 700px */
+    max-width: 100%;
+    background: #1D1C1D !important;
+    border: 1px solid #a0a096;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+    color: white !important;
+}
+
+.react-calendar__navigation {
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+    padding: 10px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.react-calendar__month-view__weekdays {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    color: #555;
+    padding: 10px;
+    background: #333;
+    border-radius: 0 0 8px 8px;
+}
+
+.react-calendar__tile {
+    flex: 1 0 14.2857%;
+    padding: 20px; /* Увеличиваем отступы для более крупных ячеек */
+    background: #1D1C1D;
+    border-radius: 4px;
+    margin: 4px; /* Увеличиваем отступы между ячейками */
+    transition: background 0.3s ease;
+}
+
+/* Сделаем сегодняшнюю дату серого цвета */
+.react-calendar__tile--now {
+    background: #555 !important;
+    color: white !important;
+}
+
+.react-calendar__tile:disabled {
+    background: transparent;
+}
+
+/* При наведении кнопки выделяются темно-серым */
+.react-calendar__tile:hover {
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.highlighted-date {
+    background: red !important;
+    color: white !important;
+}
+
+/* Если вы хотите изменить цвет текста кнопок внутри .calendar-container */
+.calendar-container button {
+    color: white;
+}
+
+/* Если вы хотите изменить стиль для .highlighted-date внутри .calendar-container */
+.calendar-container .highlighted-date {
+    background-color: red !important;
+    color: white !important;
+}

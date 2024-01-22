@@ -88,21 +88,20 @@
     background-color: #f0f0f0;
 }
 
-/* Добавьте следующие стили для подложки */
+
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* полупрозрачный черный цвет */
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
 }
 
-/* Добавьте следующие стили для контента модального окна */
 .modal-content {
     background-color: #fff;
     padding: 20px;
@@ -121,14 +120,12 @@
     color: #888;
 }
 
-/* Добавьте стили для формы внутри модального окна */
 .modal-content form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Добавьте стили для инпутов и кнопок внутри формы */
 .modal-content input {
     margin: 10px 0;
     padding: 8px;

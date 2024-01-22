@@ -1,11 +1,9 @@
-
 body {
     display: flex;
     flex-direction: column;
     height: 100vh;
     margin: 0;
     background-color: #1D1C1D;
-
 }
 
 .App {
@@ -25,14 +23,32 @@ body {
     flex-grow: 1;
     background-color: #DDDDDD;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-y: auto;
     margin: 20px;
+    scrollbar-width: thin; /* для Firefox */
+    scrollbar-color: #333 #DDDDDD; /* для Firefox */
+}
+
+/* для WebKit (Chrome, Safari) */
+.MainContent::-webkit-scrollbar {
+    width: 8px;
+}
+
+.MainContent::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 10px;
+}
+
+.MainContent::-webkit-scrollbar-track {
+    background-color: #DDDDDD;
+    border-radius: 10px;
 }
 
 .header {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    align-content: center;
     height: 50px;
     background: #E9E9E9;
     border-radius: 10px;
@@ -48,6 +64,7 @@ body {
     color: black;
     text-decoration: none;
     margin: 0 10px;
+    font-size: 16px;
 }
 
 .dropdown-container {
@@ -60,13 +77,13 @@ body {
 
 .dropdown-content {
     position: absolute;
-    top: 100%; /* Отображать под фото */
+    top: 100%;
     left: 0;
-    background-color: #333; /* Цвет фона выпадающего окна */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    z-index: 1; /* Помещаем выпадающее окно поверх других элементов */
-    border-radius: 4px; /* Скругление углов */
+    z-index: 1;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -79,9 +96,8 @@ body {
 }
 
 .dropdown-content a:hover {
-    color: #45a049; /* Цвет текста при наведении */
+    color: #45a049;
 }
-
 
 .menu-container {
     display: flex;
@@ -90,19 +106,11 @@ body {
     padding: 20px;
     background-color: #1D1C1D;
     color: white;
-
 }
 
 .logo-container img {
     width: 100px;
     height: auto;
-}
-
-.links {
-    color: black;
-    text-decoration: none;
-    font-size: 16px;
-    margin-top: 10px;
 }
 
 .avatar-links {
@@ -125,9 +133,6 @@ body {
 .avatar-links img:hover {
     transform: scale(1.1);
 }
-
-
-
 
 .main-container {
     max-width: 1200px;
@@ -199,4 +204,8 @@ header p {
 
 .button:hover {
     background-color: #45a049;
+}
+
+input {
+
 }

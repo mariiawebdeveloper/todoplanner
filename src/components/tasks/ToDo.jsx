@@ -5,7 +5,7 @@ import axios from 'axios';
 function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
     const [edit, setEdit] = useState(null);
     const [value, setValue] = useState('');
-    const [isDropdownVisible, setDropdownVisible] = useState(false);
+    const [openDropdownId, setOpenDropdownId] = useState(null);
 
     async function deleteTodo(id) {
         try {
@@ -94,6 +94,10 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
         }
     }
 
+    const handleDropdownClick = (id) => {
+        setOpenDropdownId((prevId) => (prevId === id ? null : id));
+    };
+
     return (
         <div>
             {todo.sort(sortCards).map((item) => (
@@ -111,24 +115,26 @@ function ToDo({ todo, setTodo, currentCard, setCurrentCard }) {
                             <div>
                                 <input
                                     value={value ? value : ''}
-                                    onChange={(e) => {
-                                        setValue(e.target.value);
-                                        console.log(e.target.value);
-                                    }}
+                                    onChange={(e) => setValue(e.target.value)}
                                 />
                             </div>
                         ) : (
                             <div className={'todo-loc-dots'}>
                                 <div>{item.title}</div>
-                            <div className={'todo-loc'}>
-                                <div className={'dots'} onClick={() => setDropdownVisible(!isDropdownVisible)}>...</div>
-                                {isDropdownVisible && (
-                                    <div className="button-dropdown">
-                                        <button onClick={() => deleteTodo(item.trueId)}>DELETE</button>
-                                        <button onClick={() => editTodo(item.trueId)}>EDIT</button>
+                                <div className={'todo-loc'}>
+                                    <div
+                                        className={'dots'}
+                                        onClick={() => handleDropdownClick(item.trueId)}
+                                    >
+                                        ...
                                     </div>
-                                )}
-                            </div>
+                                    {openDropdownId === item.trueId && (
+                                        <div className="button-dropdown">
+                                            <button onClick={() => deleteTodo(item.trueId)}>DELETE</button>
+                                            <button onClick={() => editTodo(item.trueId, item.title)}>EDIT</button>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         )}
                         <div>{`Task is ${item.status === 'to do' ? 'todo' : item.status}`}</div>

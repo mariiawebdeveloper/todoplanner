@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {useCookies} from 'react-cookie';
+import { useCookies } from 'react-cookie';
 import './user.css';
-
-
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const [cookies, setCookie] = useCookies(['username']);
+
+    // Если кука существует, пользователь уже залогинен
+    if (cookies.username) {
+        return (
+            <div className="container">
+                <img src='/ava.svg' alt="Фото" />
+                <h2 className="form-label">You're already logged in</h2>
+                <Link className="link" to="/todo">Go to Todo</Link>
+            </div>
+        );
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,7 +36,7 @@ const LoginPage = () => {
             });
 
             if (response.ok) {
-                setCookie("username", username )
+                setCookie("username", username);
                 navigate('/todo');
             }
 

@@ -39,7 +39,7 @@ function Menu() {
                     </Link>
                 </div>
                 <div>
-                    <Link to={'/profile'}>
+                    <Link to={'/logout'}>
                         <img src={'/Vector (3).svg'} width={35} height={40} alt="User Avatar" />
                     </Link>
                 </div>

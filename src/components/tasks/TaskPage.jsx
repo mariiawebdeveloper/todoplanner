@@ -4,7 +4,7 @@ import ToDo from './ToDo';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import './todo.css';
-import Calendar from "../Calendar";
+
 
 function TaskPage() {
     const [cookies] = useCookies(['username']);
@@ -86,19 +86,19 @@ function TaskPage() {
                     <div onClick={handleModalOpen}>+</div>
                     {isModalOpen && <AddToDoModal setTodo={setTodo} onClose={handleModalClose} />}
                     <div className="main-location" onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'to do')}>
-                        <div>To do list</div>
+                        <div className={'todo-title'}><div><img src={'/Ellipse 20.svg'} width={20}/></div><div>To do list</div></div>
                         <div className="item">
                             <ToDo todo={toDoTasks} setTodo={setTodo} currentCard={currentCard} setCurrentCard={setCurrentCard} />
                         </div>
                     </div>
                     <div className="main-location" onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'in progress')}>
-                        <div>Progress list</div>
+                        <div className={'todo-title'}><div><img src={'/Ellipse 16.svg'} width={20}/></div><div>Progress list</div></div>
                         <div className="item">
                             <ToDo todo={inProcessTasks} setTodo={setTodo} currentCard={currentCard} setCurrentCard={setCurrentCard} />
                         </div>
                     </div>
                     <div className="main-location" onDragOver={(e) => e.preventDefault()} onDrop={(e) => dropHandler(e, 'done')}>
-                        <div>Done list</div>
+                        <div className={'todo-title'}><div><img src={'/Ellipse 17.svg'} width={20}/></div><div>Done list</div></div>
                         <div className="item">
                             <ToDo todo={doneTasks} setTodo={setTodo} currentCard={currentCard} setCurrentCard={setCurrentCard} />
                         </div>
